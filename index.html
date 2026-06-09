@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>More Local Growth — Roofing Lead Systems</title>
+  <title>More Local Growth — Contractor Marketing Systems</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet" />
@@ -32,10 +32,21 @@
       backdrop-filter: blur(8px);
       border-bottom: 1px solid var(--card-border);
       display: flex; align-items: center; justify-content: space-between;
-      padding: 0 48px; height: 110px;
+      padding: 0 48px; height: 96px;
     }
-    .nav-logo { display: flex; align-items: center; text-decoration: none; }
-    .nav-logo img { height: 94px; width: auto; display: block; }
+    .nav-logo {
+      display: flex; align-items: center; text-decoration: none; gap: 10px;
+    }
+    .nav-logo-mark {
+      width: 38px; height: 38px; background: var(--dark); border-radius: 6px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .nav-logo-mark svg { width: 22px; height: 22px; fill: var(--teal-light); }
+    .nav-logo-text {
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 19px;
+      text-transform: uppercase; color: var(--dark); line-height: 1; letter-spacing: 0.03em;
+    }
+    .nav-logo-text span { color: var(--teal); }
     .nav-links { display: flex; gap: 32px; list-style: none; }
     .nav-links a { font-size: 15px; font-weight: 500; color: var(--text-body); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--teal); }
@@ -47,9 +58,24 @@
       text-decoration: none; transition: background 0.2s;
     }
     .btn-nav:hover { background: var(--red-dark); }
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px; background: none; border: none;
+      cursor: pointer; padding: 4px;
+    }
+    .hamburger span { width: 24px; height: 2px; background: var(--dark); transition: all 0.3s; display: block; }
+    @media (max-width: 768px) {
+      nav { padding: 0 20px; }
+      .nav-links { display: none; position: absolute; top: 72px; left: 0; right: 0;
+        background: white; flex-direction: column; padding: 20px 24px; gap: 0;
+        border-bottom: 1px solid var(--card-border); box-shadow: 0 8px 24px rgba(0,0,0,0.1); }
+      .nav-links.open { display: flex; }
+      .nav-links li a { display: block; padding: 14px 0; border-bottom: 1px solid var(--card-border); }
+      .hamburger { display: flex; }
+    }
 
     /* SHARED */
     .section { padding: 96px 80px; }
+    @media (max-width: 900px) { .section { padding: 60px 24px; } }
     .section-label { font-size: 12px; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase; color: var(--teal); margin-bottom: 16px; }
     .section-label.light { color: var(--teal-light); }
     .section-title { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(36px, 4.5vw, 58px); text-transform: uppercase; line-height: 0.95; color: var(--dark); margin-bottom: 20px; }
@@ -81,7 +107,7 @@
     .hero h1 .accent-teal { color: var(--teal-light); }
     .hero h1 .accent-red { color: var(--red); }
     .hero-body { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.65); max-width: 520px; margin-bottom: 40px; }
-    .hero-ctas { display: flex; align-items: center; gap: 24px; }
+    .hero-ctas { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
     .btn-primary {
       background: var(--red); color: var(--white);
       font-family: 'Barlow Condensed', sans-serif; font-weight: 800;
@@ -93,22 +119,25 @@
     .btn-primary:hover { background: var(--red-dark); transform: translateY(-1px); }
     .btn-ghost { color: rgba(255,255,255,0.75); font-size: 15px; font-weight: 500; text-decoration: none; display: inline-flex; align-items: center; gap: 6px; transition: color 0.2s; }
     .btn-ghost:hover { color: var(--white); }
-    .hero-stats { display: flex; gap: 40px; margin-top: 52px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); }
+    .hero-stats { display: flex; gap: 40px; margin-top: 52px; padding-top: 32px; border-top: 1px solid rgba(255,255,255,0.1); flex-wrap: wrap; }
     .hero-stat-value { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 28px; color: var(--teal-light); line-height: 1; }
     .hero-stat-label { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
     .hero-divider { color: rgba(255,255,255,0.15); font-size: 24px; align-self: center; }
+    @media (max-width: 900px) {
+      .hero { grid-template-columns: 1fr; padding: 40px 24px; min-height: auto; gap: 40px; }
+      .hero-stats { gap: 20px; }
+    }
 
-    /* MOCK UI */
-    .mock-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.4); max-width: 340px; margin-left: auto; }
-    .mock-header { background: var(--red); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
+    /* MOCK DASHBOARD CARD */
+    .mock-card { background: white; border-radius: 20px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.4); max-width: 360px; margin-left: auto; }
+    .mock-header { background: var(--teal); padding: 16px 20px; display: flex; align-items: center; justify-content: space-between; }
     .mock-header-left { display: flex; align-items: center; gap: 12px; }
     .mock-header-icon { width: 44px; height: 44px; background: rgba(255,255,255,0.2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
     .mock-title { font-weight: 700; font-size: 16px; color: white; line-height: 1; }
     .mock-sub { font-size: 12px; color: rgba(255,255,255,0.85); margin-top: 4px; display: flex; align-items: center; gap: 5px; }
     .mock-sub-dot { width: 7px; height: 7px; border-radius: 50%; background: #4ade80; display: inline-block; }
     .mock-badge { background: rgba(255,255,255,0.2); color: white; font-size: 12px; font-weight: 700; padding: 5px 12px; border-radius: 20px; display: flex; align-items: center; gap: 6px; white-space: nowrap; }
-    .mock-badge-dot { width: 8px; height: 8px; background: var(--red); border-radius: 50%; border: 2px solid white; }
-    .mock-alert-bar { background: #fff0f0; padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--red); display: flex; align-items: center; gap: 6px; line-height: 1.3; }
+    .mock-alert-bar { background: rgba(78,158,148,0.08); border-left: 3px solid var(--teal); padding: 14px 20px; font-size: 14px; font-weight: 600; color: var(--teal); display: flex; align-items: center; gap: 6px; line-height: 1.3; }
     .mock-messages { padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #eef2f5; }
     .mock-msg { background: white; border-radius: 14px; padding: 14px 16px; }
     .mock-msg-name { font-weight: 700; font-size: 15px; color: var(--dark); margin-bottom: 6px; }
@@ -123,9 +152,18 @@
     .mock-pipe-label { font-size: 9px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-top: 4px; }
     .mock-pipe-divider { color: rgba(255,255,255,0.15); align-self: center; }
 
+    /* TRADE LOGOS STRIP */
+    .trades-strip { background: var(--light-bg); padding: 28px 80px; border-bottom: 1px solid var(--card-border); }
+    .trades-label { text-align: center; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--text-muted); margin-bottom: 20px; }
+    .trades-list { display: flex; gap: 12px; align-items: center; justify-content: center; flex-wrap: wrap; }
+    .trade-pill { display: flex; align-items: center; gap: 8px; background: white; border: 1px solid var(--card-border); border-radius: 40px; padding: 8px 18px; font-size: 13px; font-weight: 600; color: var(--text-body); }
+    .trade-pill span { font-size: 16px; }
+    @media (max-width: 900px) { .trades-strip { padding: 24px; } }
+
     /* PROBLEM */
     .problem { background: var(--light-bg); }
     .problem-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 56px; }
+    @media (max-width: 900px) { .problem-cards { grid-template-columns: 1fr; } }
     .problem-card { background: white; border-radius: 14px; padding: 28px; border-top: 3px solid var(--red); box-shadow: 0 2px 12px rgba(0,0,0,0.05); }
     .problem-badge { display: inline-block; background: #fdecea; color: var(--red); font-size: 11px; font-weight: 700; letter-spacing: 0.08em; padding: 4px 10px; border-radius: 20px; margin-bottom: 16px; }
     .problem-icon { font-size: 28px; margin-bottom: 12px; }
@@ -135,6 +173,7 @@
     /* GUIDE */
     .guide { background: white; }
     .guide-grid { display: grid; grid-template-columns: 1fr 1.1fr; gap: 72px; align-items: center; }
+    @media (max-width: 900px) { .guide-grid { grid-template-columns: 1fr; gap: 40px; } }
     .guide-quote-card { background: var(--dark); border-radius: 16px; padding: 40px; }
     .guide-quote { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 22px; line-height: 1.35; color: white; margin-bottom: 24px; }
     .guide-quote-attr { font-size: 14px; color: rgba(255,255,255,0.55); }
@@ -148,32 +187,36 @@
     /* HOW IT WORKS */
     .how { background: var(--dark); }
     .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin-top: 56px; background: rgba(255,255,255,0.05); border-radius: 16px; overflow: hidden; position: relative; }
+    @media (max-width: 900px) { .steps-grid { grid-template-columns: 1fr; } }
     .step { padding: 40px 36px; position: relative; }
     .step:not(:last-child)::after { content: '→'; position: absolute; right: -14px; top: 50%; transform: translateY(-50%); width: 28px; height: 28px; background: var(--teal); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 13px; z-index: 2; line-height: 28px; text-align: center; }
+    @media (max-width: 900px) { .step:not(:last-child)::after { display: none; } }
     .step-num { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 72px; color: rgba(255,255,255,0.06); line-height: 1; margin-bottom: 8px; }
     .step h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 20px; text-transform: uppercase; color: white; margin-bottom: 12px; }
     .step p { font-size: 14px; line-height: 1.65; color: rgba(255,255,255,0.55); }
 
-    /* 48 HOUR WINDOW */
-    .window-section { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08); }
-    .window-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 56px; }
-    .window-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 40px; }
-    .window-stat { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 20px; }
-    .window-stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 36px; color: var(--red); line-height: 1; }
-    .window-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
-    .timeline-card { background: rgba(255,255,255,0.07); border-radius: 14px; padding: 28px; }
-    .timeline-header { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 20px; }
-    .timeline-row { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); align-items: start; }
-    .timeline-row:last-child { border-bottom: none; padding-bottom: 0; }
-    .timeline-time { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: rgba(255,255,255,0.6); padding-top: 2px; }
-    .timeline-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
-    .timeline-tag { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 4px; }
+    /* THE INVISIBLE PROBLEM */
+    .invisible { background: var(--dark); border-top: 1px solid rgba(255,255,255,0.08); }
+    .invisible-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; margin-top: 56px; }
+    @media (max-width: 900px) { .invisible-grid { grid-template-columns: 1fr; gap: 32px; } }
+    .invisible-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .invisible-stat { background: rgba(255,255,255,0.06); border-radius: 10px; padding: 20px; }
+    .invisible-stat-val { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 36px; color: var(--red); line-height: 1; }
+    .invisible-stat-label { font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 4px; }
+    .flow-card { background: rgba(255,255,255,0.07); border-radius: 14px; padding: 28px; }
+    .flow-header { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--teal-light); margin-bottom: 20px; }
+    .flow-row { display: grid; grid-template-columns: 90px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.08); align-items: start; }
+    .flow-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .flow-time { font-family: 'Barlow Condensed', sans-serif; font-weight: 700; font-size: 15px; color: rgba(255,255,255,0.6); padding-top: 2px; }
+    .flow-text { font-size: 13px; color: rgba(255,255,255,0.7); line-height: 1.5; }
+    .flow-tag { display: inline-block; margin-top: 6px; font-size: 10px; font-weight: 700; letter-spacing: 0.06em; padding: 3px 9px; border-radius: 4px; }
     .tag-teal { background: rgba(78,158,148,0.25); color: var(--teal-light); }
     .tag-red { background: rgba(232,64,64,0.25); color: #ff8080; }
 
     /* FEATURES */
     .features { background: var(--light-bg); }
     .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 56px; }
+    @media (max-width: 900px) { .features-grid { grid-template-columns: 1fr; } }
     .feature-card { background: white; border-radius: 14px; padding: 28px; box-shadow: 0 2px 12px rgba(0,0,0,0.04); transition: transform 0.2s, box-shadow 0.2s; }
     .feature-card:hover { transform: translateY(-3px); box-shadow: 0 8px 28px rgba(0,0,0,0.09); }
     .feature-cat { display: inline-block; background: rgba(78,158,148,0.1); color: var(--teal); font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 4px 10px; border-radius: 4px; margin-bottom: 16px; }
@@ -184,6 +227,7 @@
     /* TRANSFORMATION */
     .transformation { background: white; }
     .transform-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; margin-top: 56px; align-items: start; }
+    @media (max-width: 900px) { .transform-grid { grid-template-columns: 1fr; } }
     .transform-label { display: inline-block; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; padding: 5px 12px; border-radius: 4px; margin-bottom: 20px; }
     .label-before { background: #fdecea; color: var(--red); }
     .label-after { background: rgba(78,158,148,0.1); color: var(--teal); }
@@ -202,6 +246,7 @@
     .pricing-headline { text-align: center; max-width: 680px; margin: 0 auto 60px; }
     .pricing-sub { font-size: 17px; color: var(--text-muted); margin-top: 12px; }
     .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; align-items: start; }
+    @media (max-width: 900px) { .pricing-grid { grid-template-columns: 1fr; } }
     .price-card { background: white; border-radius: 16px; padding: 36px 32px; border: 2px solid var(--card-border); position: relative; }
     .price-card.featured { background: var(--dark); border-color: transparent; margin-top: -16px; padding-top: 52px; }
     .most-popular { position: absolute; top: 16px; left: 50%; transform: translateX(-50%); background: rgba(78,158,148,0.2); color: var(--teal-light); font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; padding: 5px 20px; border-radius: 20px; white-space: nowrap; }
@@ -221,169 +266,73 @@
     .price-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 14px; color: var(--text-body); line-height: 1.4; }
     .price-card.featured .price-features li { color: rgba(255,255,255,0.8); }
     .check-icon { color: var(--teal); flex-shrink: 0; font-size: 15px; margin-top: 1px; }
-    .btn-outline { display: block; text-align: center; background: transparent; border: 2px solid var(--dark); color: var(--dark); font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px; letter-spacing: 0.08em; text-transform: uppercase; padding: 14px; cursor: pointer; text-decoration: none; transition: background 0.2s, color 0.2s; }
-    .btn-outline:hover { background: var(--dark); color: white; }
-    .btn-red-full { display: block; text-align: center; background: var(--red); color: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 16px; letter-spacing: 0.08em; text-transform: uppercase; padding: 16px; border: none; cursor: pointer; text-decoration: none; transition: background 0.2s; }
+    .btn-outline {
+      display: block; text-align: center; border: 2px solid var(--teal); color: var(--teal);
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 13px; text-decoration: none;
+      transition: all 0.2s; border-radius: 2px;
+    }
+    .btn-outline:hover { background: var(--teal); color: white; }
+    .btn-red-full {
+      display: block; text-align: center; background: var(--red); color: white;
+      font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 15px;
+      letter-spacing: 0.06em; text-transform: uppercase; padding: 15px; text-decoration: none;
+      transition: background 0.2s; border-radius: 2px;
+    }
     .btn-red-full:hover { background: var(--red-dark); }
 
     /* FAQ */
-    .faq-section { background: var(--light-bg); padding: 96px 80px; }
+    .faq-section { padding: 96px 80px; background: white; }
+    @media (max-width: 900px) { .faq-section { padding: 60px 24px; } }
     .faq-headline { text-align: center; margin-bottom: 56px; }
-    .faq-list { max-width: 780px; margin: 0 auto; display: flex; flex-direction: column; gap: 12px; }
-    .faq-item { background: white; border-radius: 12px; overflow: hidden; border: 1px solid var(--card-border); }
-    .faq-question { width: 100%; background: none; border: none; padding: 22px 24px; display: flex; align-items: center; justify-content: space-between; text-align: left; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 16px; font-weight: 600; color: var(--dark); transition: background 0.15s; }
-    .faq-question:hover { background: #f7f9fb; }
-    .faq-question.open { background: var(--dark); color: white; }
-    .faq-toggle { width: 28px; height: 28px; border-radius: 50%; background: var(--light-bg); display: flex; align-items: center; justify-content: center; font-size: 18px; font-weight: 300; color: var(--dark); flex-shrink: 0; transition: background 0.2s, transform 0.2s; }
-    .faq-question.open .faq-toggle { background: var(--teal); color: white; transform: rotate(45deg); }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease; }
-    .faq-answer.open { max-height: 300px; }
-    .faq-answer-inner { padding: 16px 24px 22px; font-size: 15px; line-height: 1.7; color: var(--text-muted); border-top: 1px solid rgba(78,158,148,0.15); }
+    .faq-list { max-width: 760px; margin: 0 auto; }
+    .faq-item { border-bottom: 1px solid var(--card-border); }
+    .faq-question { width: 100%; background: none; border: none; text-align: left; cursor: pointer; padding: 24px 0; display: flex; align-items: center; justify-content: space-between; gap: 16px; font-size: 16px; font-weight: 600; color: var(--dark); }
+    .faq-toggle { font-size: 22px; color: var(--teal); flex-shrink: 0; transition: transform 0.3s; font-weight: 400; }
+    .faq-question.open .faq-toggle { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+    .faq-answer.open { max-height: 400px; }
+    .faq-answer-inner { padding: 0 0 24px; font-size: 15px; line-height: 1.7; color: var(--text-muted); }
 
-    /* CTA */
+    /* CTA SECTION */
     .cta-section { background: var(--dark); padding: 96px 80px; }
-    .cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
-    .cta-section h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(40px, 4.5vw, 62px); text-transform: uppercase; color: white; line-height: 0.95; margin-bottom: 20px; }
-    .cta-section h2 span { color: var(--teal-light); }
-    .cta-body { font-size: 17px; color: rgba(255,255,255,0.6); line-height: 1.65; margin-bottom: 36px; }
-    .cta-trust { display: flex; flex-direction: column; gap: 12px; }
-    .cta-trust-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.6); }
-    .cta-trust-icon { width: 32px; height: 32px; background: rgba(78,158,148,0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
-    .cta-form-wrap { background: var(--dark); border-radius: 16px; overflow: hidden; border: 1px solid rgba(255,255,255,0.08); }
-    .cta-form-header { background: var(--red); padding: 20px 28px; }
-    .cta-form-header h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 22px; text-transform: uppercase; color: white; line-height: 1; }
-    .cta-form-header p { font-size: 13px; color: rgba(255,255,255,0.8); margin-top: 4px; }
-    .cta-form-body { padding: 8px; background: var(--dark); }
-    .cta-form-body iframe { display: block; width: 100%; min-height: 434px; border: none; border-radius: 8px; }
-    .cta-form-footer { background: rgba(255,255,255,0.04); border-top: 1px solid rgba(255,255,255,0.08); padding: 16px 28px; display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
-    .cta-form-footer-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: rgba(255,255,255,0.45); }
-    .cta-form-footer-item span { font-size: 15px; }
+    @media (max-width: 900px) { .cta-section { padding: 60px 24px; } }
+    .cta-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    @media (max-width: 900px) { .cta-inner { grid-template-columns: 1fr; gap: 48px; } }
+    .cta-inner h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: clamp(38px, 4.5vw, 60px); text-transform: uppercase; color: white; line-height: 0.95; margin-bottom: 24px; }
+    .cta-inner h2 span { color: var(--teal-light); }
+    .cta-body { font-size: 17px; line-height: 1.65; color: rgba(255,255,255,0.6); margin-bottom: 32px; }
+    .cta-trust { display: flex; flex-direction: column; gap: 14px; }
+    .cta-trust-item { display: flex; align-items: center; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.65); }
+    .cta-trust-icon { width: 32px; height: 32px; background: rgba(78,158,148,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 15px; flex-shrink: 0; }
+    .cta-form-card { background: white; border-radius: 16px; padding: 40px; }
+    .cta-form-card h3 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 26px; text-transform: uppercase; color: var(--dark); margin-bottom: 6px; }
+    .cta-form-card p { font-size: 14px; color: var(--text-muted); margin-bottom: 28px; }
+    .form-group { display: flex; flex-direction: column; gap: 6px; margin-bottom: 16px; }
+    .form-group label { font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--text-body); }
+    .form-group input, .form-group select { border: 1.5px solid var(--card-border); border-radius: 6px; padding: 13px 14px; font-size: 15px; font-family: 'Barlow', sans-serif; color: var(--text-body); background: var(--white); outline: none; transition: border-color 0.2s; }
+    .form-group input:focus, .form-group select:focus { border-color: var(--teal); }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+    @media (max-width: 540px) { .form-row { grid-template-columns: 1fr; } }
+    .form-submit { width: 100%; background: var(--red); color: white; font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 17px; letter-spacing: 0.06em; text-transform: uppercase; padding: 16px; border: none; cursor: pointer; border-radius: 4px; transition: background 0.2s; margin-top: 4px; }
+    .form-submit:hover { background: var(--red-dark); }
+    .form-disclaimer { font-size: 12px; color: var(--text-muted); text-align: center; margin-top: 12px; }
 
     /* FOOTER */
-    footer { background: white; border-top: 1px solid var(--card-border); padding: 64px 80px 40px; }
-    .footer-grid { display: grid; grid-template-columns: 1.5fr 1fr 1fr 1fr; gap: 48px; margin-bottom: 48px; }
-    .footer-logo img { height: 108px; width: auto; }
-    .footer-brand-desc { font-size: 14px; color: var(--text-muted); margin-top: 12px; line-height: 1.6; }
-    .footer-col h4 { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--dark); margin-bottom: 16px; }
-    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
-    .footer-col ul li a { font-size: 14px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .footer-col ul li a:hover { color: var(--teal); }
-    .footer-bottom { display: flex; align-items: center; justify-content: space-between; padding-top: 24px; border-top: 1px solid var(--card-border); }
-    .footer-copyright { font-size: 13px; color: var(--text-muted); }
-    .footer-serving { font-size: 13px; color: var(--text-muted); }
-    .footer-legal { display: flex; align-items: center; gap: 20px; }
-    .footer-legal a { font-size: 13px; color: var(--text-muted); text-decoration: none; transition: color 0.2s; }
-    .footer-legal a:hover { color: var(--teal); }
-
-    /* PRIVACY & TERMS PAGES */
-    .legal-page { display: none; position: fixed; inset: 0; z-index: 999; background: white; overflow-y: auto; }
-    .legal-page.active { display: block; }
-    .privacy-nav { position: sticky; top: 0; background: white; border-bottom: 1px solid var(--card-border); padding: 0 80px; height: 72px; display: flex; align-items: center; justify-content: space-between; z-index: 10; }
-    .privacy-back { display: flex; align-items: center; gap: 8px; background: none; border: none; cursor: pointer; font-family: 'Barlow', sans-serif; font-size: 15px; font-weight: 600; color: var(--teal); text-decoration: none; transition: color 0.2s; }
-    .privacy-back:hover { color: var(--dark); }
-    .privacy-content { max-width: 760px; margin: 0 auto; padding: 64px 40px 96px; }
-    .privacy-content h1 { font-family: 'Barlow Condensed', sans-serif; font-weight: 900; font-size: 48px; text-transform: uppercase; color: var(--dark); margin-bottom: 8px; }
-    .privacy-content .privacy-date { font-size: 14px; color: var(--text-muted); margin-bottom: 48px; }
-    .privacy-content h2 { font-family: 'Barlow Condensed', sans-serif; font-weight: 800; font-size: 24px; text-transform: uppercase; color: var(--dark); margin: 40px 0 12px; }
-    .privacy-content h3 { font-family: 'Barlow', sans-serif; font-weight: 700; font-size: 17px; color: var(--dark); margin: 28px 0 10px; }
-    .privacy-content p { font-size: 15px; line-height: 1.75; color: var(--text-muted); margin-bottom: 16px; }
-    .privacy-content ul { padding-left: 20px; margin-bottom: 16px; }
-    .privacy-content ul li { font-size: 15px; line-height: 1.75; color: var(--text-muted); margin-bottom: 8px; }
-    /* ─── MOBILE RESPONSIVE ─── */
-    @media (max-width: 768px) {
-
-      /* NAV */
-      nav { padding: 0 20px; height: auto; min-height: 70px; flex-wrap: wrap; gap: 12px; padding-top: 12px; padding-bottom: 12px; }
-      .nav-logo img { height: 56px; }
-      .nav-links { display: none; }
-      .btn-nav { font-size: 12px; padding: 10px 14px; }
-
-      /* SECTIONS */
-      .section { padding: 64px 24px; }
-
-      /* HERO */
-      .hero { grid-template-columns: 1fr; padding: 48px 24px; gap: 48px; min-height: auto; }
-      .hero h1 { font-size: 52px; }
-      .hero-body { font-size: 15px; }
-      .hero-ctas { flex-direction: column; align-items: flex-start; gap: 16px; }
-      .hero-stats { flex-wrap: wrap; gap: 20px; }
-      .hero-divider { display: none; }
-      .mock-card { margin: 0 auto; max-width: 100%; }
-
-      /* PROBLEM */
-      .problem-cards { grid-template-columns: 1fr; gap: 16px; }
-
-      /* GUIDE */
-      .guide-grid { grid-template-columns: 1fr; gap: 40px; }
-      .guide-quote-card { padding: 28px; }
-      .guide-quote { font-size: 18px; }
-
-      /* HOW IT WORKS */
-      .steps-grid { grid-template-columns: 1fr; }
-      .step:not(:last-child)::after { content: '↓'; right: auto; top: auto; bottom: -14px; left: 50%; transform: translateX(-50%); }
-      .step { padding: 32px 28px; }
-
-      /* 48 HOUR WINDOW */
-      .window-grid { grid-template-columns: 1fr; gap: 40px; }
-      .window-stats { grid-template-columns: 1fr 1fr; }
-
-      /* FEATURES */
-      .features-grid { grid-template-columns: 1fr; gap: 16px; }
-
-      /* TRANSFORMATION */
-      .transform-grid { grid-template-columns: 1fr; gap: 24px; }
-
-      /* PRICING */
-      .pricing-grid { grid-template-columns: 1fr; gap: 20px; }
-      .price-card.featured { margin-top: 0; }
-
-      /* FAQ */
-      .faq-section { padding: 64px 24px; }
-
-      /* CTA */
-      .cta-section { padding: 64px 24px; }
-      .cta-inner { grid-template-columns: 1fr; gap: 48px; }
-
-      /* FOOTER */
-      footer { padding: 48px 24px 32px; }
-      .footer-grid { grid-template-columns: 1fr 1fr; gap: 32px; }
-      .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
-      .footer-legal { flex-wrap: wrap; justify-content: center; }
-
-      /* LEGAL PAGES */
-      .privacy-nav { padding: 0 20px; }
-      .privacy-content { padding: 40px 20px 64px; }
-      .privacy-content h1 { font-size: 36px; }
-    }
-
-    @media (max-width: 480px) {
-      .hero h1 { font-size: 42px; }
-      .section-title { font-size: 34px; }
-      .window-stats { grid-template-columns: 1fr; }
-      .footer-grid { grid-template-columns: 1fr; }
-      .hero-stats { gap: 16px; }
-      .hero-stat-value { font-size: 22px; }
-    }
-    /* HAMBURGER */
-    .hamburger { display: none; flex-direction: column; justify-content: space-between; width: 28px; height: 20px; background: none; border: none; cursor: pointer; padding: 0; }
-    .hamburger span { display: block; height: 2px; width: 100%; background: var(--dark); border-radius: 2px; transition: all 0.3s; }
-    .hamburger.open span:nth-child(1) { transform: translateY(9px) rotate(45deg); }
-    .hamburger.open span:nth-child(2) { opacity: 0; }
-    .hamburger.open span:nth-child(3) { transform: translateY(-9px) rotate(-45deg); }
-    @media (max-width: 768px) {
-      .hamburger { display: flex; }
-      .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: white; flex-direction: column; gap: 0; padding: 8px 0; border-bottom: 1px solid var(--card-border); box-shadow: 0 8px 24px rgba(0,0,0,0.08); z-index: 99; }
-      .nav-links.open { display: flex; }
-      .nav-links li a { display: block; padding: 14px 24px; font-size: 16px; border-bottom: 1px solid var(--light-bg); }
-    }
+    footer { background: var(--white); border-top: 1px solid var(--card-border); padding: 40px 80px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 20px; }
+    @media (max-width: 900px) { footer { padding: 32px 24px; flex-direction: column; text-align: center; } }
+    .footer-links { display: flex; gap: 24px; flex-wrap: wrap; }
+    .footer-links a { font-size: 13px; color: var(--text-muted); text-decoration: none; }
+    .footer-links a:hover { color: var(--teal); }
+    .footer-copy { font-size: 12px; color: var(--text-muted); }
   </style>
 </head>
 <body>
 
 <!-- NAV -->
 <nav>
-  <a class="nav-logo" href="#">
-    <img src="data:image/png;base64,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7brV00jodUWqOMuJY02dzi0Z5Anjc+Xet1ZobjBQNjutbBWVQJ3pYafgtIzyG7vOxy81OkRLMUKue1TQduudRQVV9bv0snCqZY6aWSCB/wBWSVrSxh8cnl34UwrI5JqSaKGUxSPjc1jx1aSMA+5UXp3VTtEbJZdFustwptZUFPLBBSOtcs8VfUEndla9jSx7XkgkkjvyprG1L2mq29Wav0/pajpKu9VzoYayUQ05igkmMjy0uADY2uJ5AnomktYac1WKn5CuTamSlIFRE6J8UsWem8x4DhnuOOag+15moKn+bya300Ruzb1FI4TRvMMb/R5MmTcyWtySPgvrZnTXqbapqe5aubDT32Kkp6SGKjp3tpJKQEvbKyR2S9xcSCDgtxjHNT0xraOuerSRX3afoeyXWottfesVFIQKsw00szKYnulexpaw/wC4jHet1dtT2K12amvNZcYm26qliihqYwZI3GUhsZy0HkSR63Tn1VXaA1Jb9numqzSeqbPdm3iGsqZCILbLUC7cSVzmyRvY0tcXAgEOIxjBWy0roW41XZ8n0hdoHUdXWwVMkFMXAmjL5HSwx58WEs9hGEmsQRe0rArdS2Si1NQabqa9kd1uEUktLTlrsyNZ9I5xge888HHReVTqyw07r019Y97rGGG4CKnkkMW+3eaAGtO8d3Bw3JGRlUZRQ6h1Hpur2r11rrI73ZKih9DpXxOEroqQfhYaMZxKZJvbutVq7E6Cqj0dJe7lA+G46grJrrUskbhzOK75th7/AFYwwYSaxBW82l62Tanoq83eO02641k1ZJKIeGbXVNDXkZAeXRgM5fWIUkt97tlfeLnaKSp4lba3RNrI9xw4Zkbvs5kYOW8+WVDNmEE8Wv8AaNJLDLGyW8Qujc9hAePRYxlpPUZ8FpLfp6/3Pa/r2ot2pbrp+ES0HOnpIntqPwYc8ysdndxj1fHmmoItbULN09fbXqCjmq7TVekww1MtM9245uJI3Fr2+sB0IIz0WyVb9nekq6LRNfT1vpDpm3y4b0k8e46X593r4wB63Xly58lZCrMales7iJkRRd1s1wXEt1VaQMnA+RnHA7v75b60xV0NvijuVVDV1TQeJNFDwmu58sN3nY5Y7ymkxLKREUJEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERATCIgIiIGEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z" alt="More Local Growth" />
+  <a href="#" class="nav-logo">
+    <img src="data:image/png;base64,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7brV00jodUWqOMuJY02dzi0Z5Anjc+Xet1ZobjBQNjutbBWVQJ3pYafgtIzyG7vOxy81OkRLMUKue1TQduudRQVV9bv0snCqZY6aWSCB/wBWSVrSxh8cnl34UwrI5JqSaKGUxSPjc1jx1aSMA+5UXp3VTtEbJZdFustwptZUFPLBBSOtcs8VfUEndla9jSx7XkgkkjvyprG1L2mq29Wav0/pajpKu9VzoYayUQ05igkmMjy0uADY2uJ5AnomktYac1WKn5CuTamSlIFRE6J8UsWem8x4DhnuOOag+15moKn+bya300Ruzb1FI4TRvMMb/R5MmTcyWtySPgvrZnTXqbapqe5aubDT32Kkp6SGKjp3tpJKQEvbKyR2S9xcSCDgtxjHNT0xraOuerSRX3afoeyXWottfesVFIQKsw00szKYnulexpaw/wC4jHet1dtT2K12amvNZcYm26qliihqYwZI3GUhsZy0HkSR63Tn1VXaA1Jb9numqzSeqbPdm3iGsqZCILbLUC7cSVzmyRvY0tcXAgEOIxjBWy0roW41XZ8n0hdoHUdXWwVMkFMXAmjL5HSwx58WEs9hGEmsQRe0rArdS2Si1NQabqa9kd1uEUktLTlrsyNZ9I5xge888HHReVTqyw07r019Y97rGGG4CKnkkMW+3eaAGtO8d3Bw3JGRlUZRQ6h1Hpur2r11rrI73ZKih9DpXxOEroqQfhYaMZxKZJvbutVq7E6Cqj0dJe7lA+G46grJrrUskbhzOK75th7/AFYwwYSaxBW82l62Tanoq83eO02641k1ZJKIeGbXVNDXkZAeXRgM5fWIUkt97tlfeLnaKSp4lba3RNrI9xw4Zkbvs5kYOW8+WVDNmEE8Wv8AaNJLDLGyW8Qujc9hAePRYxlpPUZ8FpLfp6/3Pa/r2ot2pbrp+ES0HOnpIntqPwYc8ysdndxj1fHmmoItbULN09fbXqCjmq7TVekww1MtM9245uJI3Fr2+sB0IIz0WyVb9nekq6LRNfT1vpDpm3y4b0k8e46X593r4wB63Xly58lZCrMales7iJkRRd1s1wXEt1VaQMnA+RnHA7v75b60xV0NvijuVVDV1TQeJNFDwmu58sN3nY5Y7ymkxLKREUJEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERATCIgIiIGEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z" alt="More Local Growth" style="height:78px;width:auto;display:block;" />
   </a>
   <ul class="nav-links" id="navLinks">
     <li><a href="#problem" onclick="closeMenu()">The Problem</a></li>
@@ -393,7 +342,7 @@
     <li><a href="#faq" onclick="closeMenu()">FAQ</a></li>
   </ul>
   <div style="display:flex;align-items:center;gap:12px;">
-    <a href="#cta" class="btn-nav" onclick="closeMenu()">Get Free Strategy Call</a>
+    <a href="#" class="btn-nav" onclick="closeMenu();openGHLForm();return false;">Get Free Strategy Call</a>
     <button class="hamburger" id="hamburger" onclick="toggleMenu()" aria-label="Menu">
       <span></span><span></span><span></span>
     </button>
@@ -403,31 +352,21 @@
 <!-- 1. HERO -->
 <section class="hero">
   <div>
-    <div class="hero-badge">Built Exclusively for Roofing Contractors</div>
+    <div class="hero-badge">Built for Contractors Who Are Serious About Growth</div>
     <h1>
       While You're<br>
-      <span class="accent-teal">On the Roof,</span><br>
-      Your Next Job<br>
+      <span class="accent-teal">On the Job,</span><br>
+      Your Next Client<br>
       Is <span class="accent-red">Calling</span><br>
       <span class="accent-red">Someone</span><br>
       Who Answers
     </h1>
-    <p class="hero-body">Every storm drops 80–120 calls in 48 hours. Most roofers miss them. We build the system that captures every lead, follows up automatically, and books the estimate — so you never lose another job to the contractor who answered first.</p>
+    <p class="hero-body">Good contractors lose jobs every week — not because their work is bad, but because someone else answered first. We build the system that captures every lead, follows up automatically, and books the estimate — so you never lose a job to the contractor who just happened to pick up.</p>
     <div class="hero-ctas">
-      <a href="#cta" class="btn-primary">Get Your Free Strategy Call →</a>
+      <a href="#" class="btn-primary" onclick="openGHLForm();return false;">Get Your Free Strategy Call →</a>
       <a href="#how" class="btn-ghost">See how it works →</a>
     </div>
     <div class="hero-stats">
-      <div class="hero-stat">
-        <div class="hero-stat-value">48HRS</div>
-        <div class="hero-stat-label">Storm Lead Window</div>
-      </div>
-      <div class="hero-divider">|</div>
-      <div class="hero-stat">
-        <div class="hero-stat-value">$15,000+</div>
-        <div class="hero-stat-label">Avg Roof Replacement</div>
-      </div>
-      <div class="hero-divider">|</div>
       <div class="hero-stat">
         <div class="hero-stat-value">5MIN</div>
         <div class="hero-stat-label">Auto-Text Response</div>
@@ -435,7 +374,17 @@
       <div class="hero-divider">|</div>
       <div class="hero-stat">
         <div class="hero-stat-value">85%</div>
-        <div class="hero-stat-label">Buy from 1st Responder</div>
+        <div class="hero-stat-label">Hire 1st Responder</div>
+      </div>
+      <div class="hero-divider">|</div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">42HRS</div>
+        <div class="hero-stat-label">Avg Contractor Follow-Up</div>
+      </div>
+      <div class="hero-divider">|</div>
+      <div class="hero-stat">
+        <div class="hero-stat-value">$0</div>
+        <div class="hero-stat-label">Setup Cost</div>
       </div>
     </div>
   </div>
@@ -445,44 +394,44 @@
         <div class="mock-header-left">
           <div class="mock-header-icon">⚡</div>
           <div>
-            <div class="mock-title">Storm Alert — Incoming</div>
-            <div class="mock-sub"><span class="mock-sub-dot"></span> Auto-response system</div>
+            <div class="mock-title">New Leads — Live Dashboard</div>
+            <div class="mock-sub"><span class="mock-sub-dot"></span> Auto-response active</div>
           </div>
         </div>
-        <div class="mock-badge"><div class="mock-badge-dot"></div> 3 New Leads — Right Now</div>
+        <div class="mock-badge">● 4 New Today</div>
       </div>
-      <div class="mock-alert-bar">🏚️ Hail event detected — Your Service Area</div>
+      <div class="mock-alert-bar">📋 System handled 4 inquiries while you were on-site</div>
       <div class="mock-messages">
         <div class="mock-msg">
-          <div class="mock-msg-name">Mike T. — (847) 555-0182</div>
-          <div class="mock-msg-body"><span>"Hi Mike! Got your message about storm damage. I have a spot tomorrow at 10am — want me to book that free inspection?"</span><span class="mock-msg-time">0:47s</span></div>
+          <div class="mock-msg-name">Tom H. — (847) 555-0104</div>
+          <div class="mock-msg-body"><span>"Hi Tom! Thanks for reaching out. I have a slot open Thursday at 9am — want me to hold that for your free estimate?"</span><span class="mock-msg-time">0:53s</span></div>
         </div>
         <div class="mock-msg">
-          <div class="mock-msg-name">Sarah K. — (847) 555-0294</div>
-          <div class="mock-msg-body"><span>"Hey Sarah! We have free inspection slots available this week. Reply YES to confirm!"</span><span class="mock-msg-time">1:12s</span></div>
+          <div class="mock-msg-name">Rachel S. — (312) 555-0277</div>
+          <div class="mock-msg-body"><span>"Hey Rachel, got your message! We can fit you in this week. Reply YES to confirm your spot."</span><span class="mock-msg-time">1:18s</span></div>
         </div>
         <div class="mock-msg">
-          <div class="mock-msg-name">Dave R. — (847) 555-0371</div>
-          <div class="mock-msg-body"><span>"Hi Dave, thanks for reaching out! I can get you on the calendar for a free damage assessment — what works?"</span><span class="mock-msg-time">2:03s</span></div>
+          <div class="mock-msg-name">James D. — (708) 555-0392</div>
+          <div class="mock-msg-body"><span>"Hi James! Thanks for reaching out — I'd love to get you on the calendar. What day works best?"</span><span class="mock-msg-time">2:41s</span></div>
         </div>
       </div>
       <div class="mock-footer">
         <div class="mock-footer-bar">
-          <div class="mock-footer-text">You were on the roof — <span>System handled it</span></div>
+          <div class="mock-footer-text">You were on the job — <span>System handled it</span></div>
         </div>
         <div class="mock-pipeline">
-          <div class="mock-pipe-item">
-            <div class="mock-pipe-val">3</div>
+          <div>
+            <div class="mock-pipe-val">4</div>
             <div class="mock-pipe-label">Leads Today</div>
           </div>
           <div class="mock-pipe-divider">|</div>
-          <div class="mock-pipe-item">
-            <div class="mock-pipe-val">2</div>
+          <div>
+            <div class="mock-pipe-val">3</div>
             <div class="mock-pipe-label">Booked</div>
           </div>
           <div class="mock-pipe-divider">|</div>
-          <div class="mock-pipe-item">
-            <div class="mock-pipe-val">$171k</div>
+          <div>
+            <div class="mock-pipe-val">$86k</div>
             <div class="mock-pipe-label">Pipeline Value</div>
           </div>
         </div>
@@ -491,29 +440,44 @@
   </div>
 </section>
 
+<!-- TRADES STRIP -->
+<div class="trades-strip">
+  <div class="trades-label">Built for Every Trade</div>
+  <div class="trades-list">
+    <div class="trade-pill"><span>🏠</span> Roofing</div>
+    <div class="trade-pill"><span>💧</span> Plumbing</div>
+    <div class="trade-pill"><span>⚡</span> Electrical</div>
+    <div class="trade-pill"><span>❄️</span> HVAC</div>
+    <div class="trade-pill"><span>🔨</span> General Contracting</div>
+    <div class="trade-pill"><span>🪟</span> Windows &amp; Siding</div>
+    <div class="trade-pill"><span>🌿</span> Landscaping</div>
+    <div class="trade-pill"><span>🚿</span> Restoration</div>
+  </div>
+</div>
+
 <!-- 2. THE PROBLEM -->
 <section class="section problem" id="problem">
   <div class="section-label">The Problem</div>
-  <h2 class="section-title">Every Storm is a<br>Money Window.<br>Most Roofers Miss It.</h2>
-  <p class="section-body">You do great work. But if the right systems aren't in place, the homeowner who just had hail hit their roof is already talking to your competitor.</p>
+  <h2 class="section-title">You're Doing Great Work.<br>But Your Phone<br>Is Sending Leads Away.</h2>
+  <p class="section-body">The brutal truth: most contractors don't lose jobs because of price or quality. They lose them because another contractor responded faster. The job went to someone whose system — not skill — was better.</p>
   <div class="problem-cards">
     <div class="problem-card">
-      <div class="problem-badge">400–800% search spike in 48hrs</div>
-      <div class="problem-icon">🚫</div>
-      <h3>Calls Go Unanswered</h3>
-      <p>After a storm, your phone should be ringing off the hook. But you're on a job, your crew is busy, and 62% of those calls go to voicemail. 85% of those homeowners hire the first contractor who responds. Gone forever.</p>
+      <div class="problem-badge">62% of calls go unanswered</div>
+      <div class="problem-icon">📵</div>
+      <h3>You're Too Busy to Answer</h3>
+      <p>You're on a job, in a crawlspace, or on a roof. You can't answer every call. And when you don't, that prospect finds the next guy on Google who does. 85% of customers hire the first contractor who responds. That job is gone — not because you weren't better, but because you weren't first.</p>
     </div>
     <div class="problem-card">
-      <div class="problem-badge">72% of roofers have no dispatcher</div>
-      <div class="problem-icon">🕐</div>
-      <h3>Slow Follow-Up Loses Bids</h3>
-      <p>Research shows the average contractor follows up on leads 42+ hours later. By then, 67% have already hired someone else. Speed-to-lead is the single biggest predictor of whether you win or lose the job.</p>
+      <div class="problem-badge">Average follow-up: 42+ hours</div>
+      <div class="problem-icon">⏳</div>
+      <h3>Slow Follow-Up Kills Bids</h3>
+      <p>The average contractor follows up on a lead 42 hours after initial contact. By then, 67% of prospects have already moved on. In contracting, speed-to-lead is the single biggest predictor of whether you win or lose the job — and most contractors don't even know they're slow.</p>
     </div>
     <div class="problem-card">
-      <div class="problem-badge">$15,000+ avg roof replacement job</div>
+      <div class="problem-badge">73% of quotes never get followed up</div>
       <div class="problem-icon">💸</div>
-      <h3>Old Quotes Die Quietly</h3>
-      <p>How many homeowners got a quote from you 6 months ago and never booked? No follow-up system means thousands of dollars in potential revenue just sitting in old estimates, never to be recovered.</p>
+      <h3>Dead Quotes Drain Revenue</h3>
+      <p>How many estimates did you send last year that never turned into jobs? No automated follow-up means those prospects just disappear. There are thousands of dollars sitting in dead quotes right now — from people who wanted to hire you, but hired someone else because they heard from them again and didn't hear from you.</p>
     </div>
   </div>
 </section>
@@ -523,20 +487,20 @@
   <div class="guide-grid">
     <div>
       <div class="guide-quote-card">
-        <div class="guide-quote">"In roofing, the contractor who answers fastest wins the job. We make sure that's always you — even when you're on the roof."</div>
+        <div class="guide-quote">"In contracting, the job goes to whoever answers fastest. We make sure that's always you — even when you're in the middle of a job site."</div>
         <div class="guide-quote-attr">— Dan Andrews, Founder <strong>More Local Growth</strong></div>
-        <div class="built-badge">🏠 Built For Roofing Contractors</div>
+        <div class="built-badge">🔧 Built For Contractors Who Are Serious About Growth</div>
       </div>
     </div>
     <div>
       <div class="section-label">Your Guide</div>
-      <h2 class="section-title">We Know Roofing.<br>We Know Your Market.<br>We Build Systems.</h2>
-      <p class="guide-body-text">We work exclusively with roofing contractors across the country. We understand storm season, the 48-hour lead window, and exactly why good roofers lose jobs to guys with worse crews but faster follow-up.</p>
-      <p class="guide-body-text">We don't just build websites. We build a complete lead capture and conversion system — every piece engineered to make sure you're the first to respond, the first to book, and the first to get paid.</p>
+      <h2 class="section-title">We Know Contractors.<br>We Know Your Market.<br>We Build Systems.</h2>
+      <p class="guide-body-text">We work exclusively with contractors across the country. We understand what it's like to be too busy to answer the phone, to lose a quote to a competitor who followed up, and to work hard on a great reputation that still doesn't fill the calendar.</p>
+      <p class="guide-body-text">We don't just build websites. We build a complete lead capture and conversion system — every piece designed so you're the first to respond, the first to book, and the first to get paid.</p>
       <ul class="guide-bullets">
-        <li><span class="bullet-icon">🏠</span> <strong>Roofing-only focus</strong> — every template, ad, and script built for roofers</li>
-        <li><span class="bullet-icon">⚡</span> <strong>5-minute auto-response</strong> — never lose a storm lead to slow follow-up again</li>
-        <li><span class="bullet-icon">🤝</span> <strong>No long-term contracts</strong> — we earn your business with results every month</li>
+        <li><span class="bullet-icon">🔧</span> <strong>Contractor-only focus</strong> — every system, script, and strategy built for the trades</li>
+        <li><span class="bullet-icon">⚡</span> <strong>5-minute auto-response</strong> — never lose another job to a slower competitor</li>
+        <li><span class="bullet-icon">🤝</span> <strong>No long-term contracts</strong> — we earn your business with results every single month</li>
       </ul>
     </div>
   </div>
@@ -551,64 +515,64 @@
     <div class="step">
       <div class="step-num">01</div>
       <h3>Free Strategy Audit</h3>
-      <p>We'll review your current online presence, Google profile, website, and follow-up process. We identify exactly where you're losing leads and show you the fastest path to fixing it.</p>
+      <p>We review your current website, Google profile, and follow-up process. We show you exactly where leads are falling through the cracks and the fastest path to fixing it — at no cost and no obligation.</p>
     </div>
     <div class="step">
       <div class="step-num">02</div>
       <h3>We Build Your System</h3>
-      <p>We deploy your complete roofing lead machine — high-converting website, automated 5-min SMS follow-up, Google review campaign, pipeline dashboard, webchat, and lead reactivation. Done in days.</p>
+      <p>We deploy your complete contractor lead machine — high-converting website, automated 5-min SMS follow-up, Google review campaign, pipeline dashboard, and webchat. Done in days, not months.</p>
     </div>
     <div class="step">
       <div class="step-num">03</div>
-      <h3>Leads Roll In. Jobs Get Booked.</h3>
-      <p>Every lead is contacted automatically. Every old quote gets followed up. Every happy customer leaves a Google review. You wake up to booked estimates — and a reputation that wins before you even show up.</p>
+      <h3>Leads Come In. Jobs Get Booked.</h3>
+      <p>Every lead gets texted within 5 minutes. Every old quote gets followed up automatically. Every happy customer leaves a Google review. You wake up to booked estimates — and a business that runs even when you're on the job.</p>
     </div>
   </div>
 </section>
 
-<!-- 5. 48-HOUR WINDOW -->
-<section class="section window-section">
-  <div class="section-label light">The 48-Hour Window</div>
-  <h2 class="section-title light">After a Storm Hits,<br>You Have 48 Hours.<br>Then It's Over.</h2>
-  <p class="section-body light">When hail hits your market, homeowners search Google within hours. Search volume spikes 400–800%. The contractors who answer first book months of work in a single week. The ones who don't answer miss it entirely — not because they're bad roofers, but because they had no system.</p>
-  <div class="window-grid">
+<!-- 5. THE INVISIBLE DRAIN -->
+<section class="section invisible">
+  <div class="section-label light">The Invisible Problem</div>
+  <h2 class="section-title light">Every Day Without<br>a System Is a Day<br>You're Giving Jobs Away.</h2>
+  <p class="section-body light">The leads aren't disappearing because your market is slow. They're disappearing because someone else in your market has a system that catches them when yours doesn't. Here's what's happening right now while you're out in the field.</p>
+  <div class="invisible-grid">
     <div>
-      <div class="window-stats">
-        <div class="window-stat">
-          <div class="window-stat-val">400–800%</div>
-          <div class="window-stat-label">Search spike after hail event</div>
+      <div class="invisible-stats">
+        <div class="invisible-stat">
+          <div class="invisible-stat-val">85%</div>
+          <div class="invisible-stat-label">of customers hire the first contractor to respond</div>
         </div>
-        <div class="window-stat">
-          <div class="window-stat-val">72hrs</div>
-          <div class="window-stat-label">Window before demand drops 60%</div>
+        <div class="invisible-stat">
+          <div class="invisible-stat-val">42hrs</div>
+          <div class="invisible-stat-label">Average contractor response time — yours included</div>
         </div>
-        <div class="window-stat">
-          <div class="window-stat-val">85%</div>
-          <div class="window-stat-label">Homeowners hire first responder</div>
+        <div class="invisible-stat">
+          <div class="invisible-stat-val">67%</div>
+          <div class="invisible-stat-label">of leads gone before day 2 ends</div>
         </div>
-        <div class="window-stat">
-          <div class="window-stat-val">$56B+</div>
-          <div class="window-stat-label">Annual US roofing market spend</div>
+        <div class="invisible-stat">
+          <div class="invisible-stat-val">$400B+</div>
+          <div class="invisible-stat-label">Annual US home services market</div>
         </div>
       </div>
     </div>
-    <div class="timeline-card">
-      <div class="timeline-header">🏚️ Hailstorm — Your Market — Tuesday 6PM</div>
-      <div class="timeline-row">
-        <div class="timeline-time">6–8pm</div>
-        <div class="timeline-text">Homeowners step outside, see damage. Start Googling "roofing contractor near me."<br><span class="timeline-tag tag-teal">Your auto-texts fire in &lt;5 min</span></div>
+    <div class="flow-card">
+      <div class="flow-header">📞 What Happens When Someone Calls You Today</div>
+      <div class="flow-row">
+        <div class="flow-time">8:14am</div>
+        <div class="flow-text">A homeowner finds you on Google and calls. You're on the job site. Phone rings out.<br><span class="flow-tag tag-red">No answer. No text-back. Dead end.</span></div>
       </div>
-      <div class="timeline-row">
-        <div class="timeline-time">8pm–midnight</div>
-        <div class="timeline-text">Peak call volume hits. Your competitors' voicemails fill up. Your system books 7 inspections.<br><span class="timeline-tag tag-teal">Calendar filling automatically</span></div>
+      <div class="flow-row">
+        <div class="flow-time">8:16am</div>
+        <div class="flow-text">Homeowner goes back to Google and clicks the next listing — your competitor two miles away. Their system fires a text in under 2 minutes.<br><span class="flow-tag tag-red">Your competitor books the estimate</span></div>
       </div>
-      <div class="timeline-row">
-        <div class="timeline-time">Wednesday</div>
-        <div class="timeline-text">Leads who didn't book get automatic follow-ups. Your Google reviews convince fence-sitters.<br><span class="timeline-tag tag-teal">Follow-up sequence running</span></div>
+      <div class="flow-row">
+        <div class="flow-time">4:30pm</div>
+        <div class="flow-text">You check your missed calls and leave a voicemail. The homeowner already has an estimate booked.<br><span class="flow-tag tag-red">Too late. Job is gone.</span></div>
       </div>
-      <div class="timeline-row">
-        <div class="timeline-time">Thursday+</div>
-        <div class="timeline-text">Competitors finally call back. Most homeowners are already booked with you.<br><span class="timeline-tag tag-red">Competitors are too late</span></div>
+      <div class="flow-row">
+        <div class="flow-time">With Us</div>
+        <div class="flow-text">Lead texts your number. System responds in under 5 minutes. Appointment confirmed before you even check your phone.<br><span class="flow-tag tag-teal">You win the job — without lifting a finger</span></div>
       </div>
     </div>
   </div>
@@ -617,63 +581,82 @@
 <!-- 6. WHAT YOU GET -->
 <section class="section features" id="features">
   <div class="section-label">What You Get</div>
-  <h2 class="section-title">The Complete<br>Roofing Lead Machine</h2>
-  <p class="section-body">Eight proven systems, all working together. Built specifically for roofing contractors.</p>
+  <h2 class="section-title">The Complete<br>Contractor Lead Machine</h2>
+  <p class="section-body">Every piece works together. Nothing falls through the cracks.</p>
   <div class="features-grid">
     <div class="feature-card">
-      <div class="feature-cat">Lead Capture</div>
-      <div class="feature-icon">💬</div>
-      <h3>2-Way SMS &amp; Email Automation</h3>
-      <p>Automatically text every new lead within 5 minutes. Follow-up sequences run at 1 week, 1 month, 3 months, 6 months, and 1 year. Proven scripts that get estimates booked — included.</p>
+      <div class="feature-cat">Foundation</div>
+      <div class="feature-icon">🌐</div>
+      <h3>High-Converting Website</h3>
+      <p>Your website is your first impression and your best salesperson. We build it to load fast, rank locally, and turn visitors into calls — not just looks good on a screen.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Speed</div>
+      <div class="feature-icon">⚡</div>
+      <h3>5-Minute Auto-Text Response</h3>
+      <p>Every new lead gets a personalized text within minutes — whether you're on a roof, in a crawlspace, or at dinner. The system responds before your competitor even sees the notification.</p>
     </div>
     <div class="feature-card">
       <div class="feature-cat">Reputation</div>
       <div class="feature-icon">⭐</div>
       <h3>Google Review Campaign</h3>
-      <p>Launch a campaign to past customers and get 30–100 new Google reviews fast. 90% of homeowners read reviews before calling. More reviews = more calls from the Map Pack — before you spend a dollar on ads.</p>
+      <p>We send automated sequences to your past customers asking for Google reviews. Most clients see 30–100 new reviews in the first 60 days — which means more inbound calls before you spend a dollar on ads.</p>
     </div>
     <div class="feature-card">
-      <div class="feature-cat">Website</div>
-      <div class="feature-icon">🌐</div>
-      <h3>High-Converting Website</h3>
-      <p>A professional website built to convert visitors into booked inspections — not just look good. Built in a day. Mobile-first, fast-loading, structured to showcase your reviews and close the lead.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-cat">Engagement</div>
-      <div class="feature-icon">💬</div>
-      <h3>Webchat Widget</h3>
-      <p>Every visitor who lands on your site is greeted and invited to text. Convert website traffic into real leads instantly. Never let someone browse away without capturing their contact info.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-cat">Pipeline</div>
-      <div class="feature-icon">📊</div>
-      <h3>Custom Dashboard</h3>
-      <p>See every lead, every conversation, and every booked job in one place. Track where leads came from — Google, Facebook, website, ads. Know exactly what's working and what's not, on your phone.</p>
-    </div>
-    <div class="feature-card">
-      <div class="feature-cat">Revenue Recovery</div>
+      <div class="feature-cat">Recovery</div>
       <div class="feature-icon">🔄</div>
-      <h3>Lead Reactivation Campaign</h3>
-      <p>Send a campaign to every old lead you never closed — quotes from 6 months ago, website inquiries that went cold. Recover revenue that's just sitting in your database. Clients regularly book 3–5 jobs from their first reactivation blast.</p>
+      <h3>Dead Lead Reactivation</h3>
+      <p>There's money sitting in your old lead list right now. We send a targeted campaign to everyone who never booked — and most contractors close 3–5 jobs from the very first reactivation blast.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Persistence</div>
+      <div class="feature-icon">📅</div>
+      <h3>Long-Term Follow-Up Sequences</h3>
+      <p>We follow up on every lead automatically — at 1 week, 1 month, 3 months, 6 months, and 1 year. Most contractors give up after one call. Your system never gives up on a lead.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Visibility</div>
+      <div class="feature-icon">📊</div>
+      <h3>Pipeline &amp; Lead Dashboard</h3>
+      <p>See every lead, where it came from, and where it is in your pipeline — all in one place. No more wondering what happened to that call from last Tuesday. Everything is tracked.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Capture</div>
+      <div class="feature-icon">💬</div>
+      <h3>Website Chat Widget</h3>
+      <p>Visitors who won't call will text. Our webchat widget captures leads directly from your website and connects them to your auto-response system — no inquiry slips through.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Trust</div>
+      <div class="feature-icon">📱</div>
+      <h3>2-Way SMS &amp; Email Automation</h3>
+      <p>Leads can text you, you can reply — all from your dashboard. You look responsive, organized, and professional. Customers notice the difference. Repeat business and referrals follow.</p>
+    </div>
+    <div class="feature-card">
+      <div class="feature-cat">Elite</div>
+      <div class="feature-icon">🗺️</div>
+      <h3>Local SEO &amp; Google Ads</h3>
+      <p>For contractors ready to dominate their market, we manage your Google presence end-to-end — from Map Pack rankings to paid ads — so you're the obvious choice when someone searches for your trade.</p>
     </div>
   </div>
 </section>
 
 <!-- 7. TRANSFORMATION -->
-<section class="section transformation" id="transformation">
+<section class="section transformation" id="results">
   <div class="section-label">The Transformation</div>
-  <h2 class="section-title">What Changes When<br>You Have the Right System</h2>
+  <h2 class="section-title">Before the System.<br>After the System.</h2>
+  <p class="section-body">This is what changes when you stop running a great business with a broken phone and start running one with a machine that never misses a lead.</p>
   <div class="transform-grid">
     <div class="transform-side before-side">
       <div class="transform-label label-before">Before</div>
-      <h3>Flying Blind After Every Storm</h3>
-      <ul class="transform-list">
-        <li><span class="icon-x">✗</span> Phone rings during a job — goes to voicemail — homeowner calls your competitor</li>
-        <li><span class="icon-x">✗</span> Follow up 2 days later — they already hired someone</li>
-        <li><span class="icon-x">✗</span> Old quotes sit in a notebook, never revisited</li>
-        <li><span class="icon-x">✗</span> 23 Google reviews while the guy down the street has 187</li>
-        <li><span class="icon-x">✗</span> No idea where jobs come from or what marketing works</li>
-        <li><span class="icon-x">✗</span> Revenue swings wildly with weather — no predictability</li>
+      <h3>Missing Jobs You Should Be Winning</h3>
+      <ul class="transform-list" style="margin-top:20px;">
+        <li><span class="icon-x">✕</span> Calls ring out while you're on the job — prospect moves on</li>
+        <li><span class="icon-x">✕</span> Follow-up happens 24–48 hours later — they've already hired someone</li>
+        <li><span class="icon-x">✕</span> Old estimates die quietly — revenue you've already earned, never collected</li>
+        <li><span class="icon-x">✕</span> 12 Google reviews — customer picks the guy with 200</li>
+        <li><span class="icon-x">✕</span> No visibility into your pipeline — you don't know what you don't know</li>
+        <li><span class="icon-x">✕</span> Feast and famine — either slammed or scrambling for work</li>
       </ul>
     </div>
     <div class="transform-side">
@@ -681,12 +664,12 @@
       <div class="after-card">
         <h3>First to Respond. First to Book. First to Win.</h3>
         <ul class="transform-list" style="margin-top:20px;">
-          <li><span class="icon-check">✓</span> Every lead auto-texted in under 5 minutes — while you're still on the roof</li>
-          <li><span class="icon-check">✓</span> Follow-up sequences run for a full year — automatically</li>
+          <li><span class="icon-check">✓</span> Every lead auto-texted in under 5 minutes — while you're still on the job</li>
+          <li><span class="icon-check">✓</span> Follow-up sequences run automatically for a full year</li>
           <li><span class="icon-check">✓</span> Old leads reactivated — jobs booked from quotes you forgot about</li>
-          <li><span class="icon-check">✓</span> 150+ Google reviews — you're the obvious choice before they even call</li>
-          <li><span class="icon-check">✓</span> Full dashboard showing every lead, source, and conversion</li>
-          <li><span class="icon-check">✓</span> Consistent pipeline whether it storms or not</li>
+          <li><span class="icon-check">✓</span> 100+ Google reviews — you're the obvious choice before they even call</li>
+          <li><span class="icon-check">✓</span> Full dashboard showing every lead, source, and status</li>
+          <li><span class="icon-check">✓</span> Consistent pipeline — work booked out weeks in advance</li>
         </ul>
       </div>
     </div>
@@ -698,57 +681,58 @@
   <div class="pricing-headline">
     <div class="section-label" style="text-align:center;">Pricing</div>
     <h2 class="section-title" style="text-align:center;">One Booked Job Covers<br>Your Entire Investment.</h2>
-    <p class="pricing-sub">At $15,000+ average per job, the ROI math is simple. One job from the system. That's it.</p>
+    <p class="pricing-sub">The ROI math is simple. One job from the system. That's it. Everything after that is pure profit.</p>
   </div>
   <div class="pricing-grid">
     <div class="price-card">
       <div class="price-tier">Starter</div>
       <div class="price-name">Launch Pack</div>
-      <div class="price-desc">Core system to capture and convert leads fast</div>
+      <div class="price-desc">Core system to start capturing and converting leads fast</div>
       <div class="price-contact">Contact for Pricing</div>
       <div class="price-contact-sub">Book a free strategy call to get your custom quote</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li><span class="check-icon">✓</span> High-converting roofing website</li>
+        <li><span class="check-icon">✓</span> High-converting contractor website</li>
         <li><span class="check-icon">✓</span> 2-way SMS &amp; email automation</li>
         <li><span class="check-icon">✓</span> 5-minute auto-text response</li>
-        <li><span class="check-icon">✓</span> Webchat widget</li>
+        <li><span class="check-icon">✓</span> Website chat widget</li>
         <li><span class="check-icon">✓</span> Pipeline &amp; lead tracking dashboard</li>
       </ul>
-      <a href="#cta" class="btn-outline">Get Started</a>
+      <a href="#" class="btn-outline" onclick="openGHLForm();return false;">Get Started</a>
     </div>
     <div class="price-card featured">
       <div class="most-popular">Most Popular</div>
       <div class="price-tier">Growth</div>
-      <div class="price-name">Storm Ready</div>
-      <div class="price-desc">Full system — capture every lead from every storm</div>
+      <div class="price-name">Full System</div>
+      <div class="price-desc">Complete lead machine — capture and convert every opportunity</div>
       <div class="price-contact">Contact for Pricing</div>
       <div class="price-contact-sub">Book a free strategy call to get your custom quote</div>
       <div class="price-divider"></div>
       <ul class="price-features">
         <li><span class="check-icon">✓</span> Everything in Launch Pack, plus:</li>
-        <li><span class="check-icon">✓</span> Google Review Campaign (30–100 reviews)</li>
-        <li><span class="check-icon">✓</span> Lead Reactivation Campaign</li>
-        <li><span class="check-icon">✓</span> Follow-up sequences (1w/1mo/3mo/6mo/1yr)</li>
+        <li><span class="check-icon">✓</span> Google Review Campaign (30–100+ reviews)</li>
+        <li><span class="check-icon">✓</span> Dead Lead Reactivation Campaign</li>
+        <li><span class="check-icon">✓</span> Long-term follow-up sequences (1 wk → 1 yr)</li>
+        <li><span class="check-icon">✓</span> Dedicated onboarding call</li>
       </ul>
-      <a href="#cta" class="btn-red-full">Book Free Strategy Call</a>
+      <a href="#" class="btn-red-full" onclick="openGHLForm();return false;">Book Free Strategy Call</a>
     </div>
     <div class="price-card">
       <div class="price-tier">Elite</div>
       <div class="price-name">Market Dominator</div>
-      <div class="price-desc">Own your local roofing market completely</div>
+      <div class="price-desc">Own your local market — completely</div>
       <div class="price-contact">Contact for Pricing</div>
       <div class="price-contact-sub">Book a free strategy call to get your custom quote</div>
       <div class="price-divider"></div>
       <ul class="price-features">
-        <li><span class="check-icon">✓</span> Everything in Storm Ready, plus:</li>
-        <li><span class="check-icon">✓</span> Local SEO — rank for "roofer near me"</li>
+        <li><span class="check-icon">✓</span> Everything in Full System, plus:</li>
+        <li><span class="check-icon">✓</span> Local SEO — rank for "[trade] near me"</li>
         <li><span class="check-icon">✓</span> Google Ads management (ad spend separate)</li>
         <li><span class="check-icon">✓</span> Competitor analysis &amp; positioning</li>
         <li><span class="check-icon">✓</span> Dedicated account manager</li>
-        <li><span class="check-icon">✓</span> Weekly reporting &amp; calls</li>
+        <li><span class="check-icon">✓</span> Weekly reporting &amp; strategy calls</li>
       </ul>
-      <a href="#cta" class="btn-outline">Get Started</a>
+      <a href="#" class="btn-outline" onclick="openGHLForm();return false;">Get Started</a>
     </div>
   </div>
 </section>
@@ -761,319 +745,77 @@
   </div>
   <div class="faq-list">
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">How fast does the auto-text actually respond to a new lead?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Within 5 minutes — typically under 90 seconds. The moment a lead submits your contact form, calls and doesn't leave a voicemail, or texts your number, the system fires back automatically with a personalized message. While your competitor's phone rings out, yours is already booking the inspection.</div></div>
+      <button class="faq-question" onclick="toggleFaq(this)">How fast does the auto-text actually respond?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Within 5 minutes — typically under 90 seconds. The moment a lead submits your contact form, calls and misses, or texts your number, the system fires back with a personalized message. While your competitor's phone rings out, yours is already scheduling the estimate. Speed-to-lead is the game, and your system never sleeps.</div></div>
+    </div>
+    <div class="faq-item">
+      <button class="faq-question" onclick="toggleFaq(this)">Does this work for my trade? I'm not a roofer.<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Yes. We work with plumbers, electricians, HVAC technicians, general contractors, window and siding companies, landscapers, restoration companies, and more. The core problem — too busy to respond fast, losing jobs to whoever answers first — is universal across the trades. We customize every system to your trade, your market, and your service area.</div></div>
     </div>
     <div class="faq-item">
       <button class="faq-question" onclick="toggleFaq(this)">What does the Google review campaign actually do?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">We send a series of automated texts and emails to your past customers asking them to leave a Google review. The campaign is timed and sequenced to maximize response rates. Most clients see 30–100 new reviews within the first 60 days — which dramatically improves your Map Pack ranking and gets you more inbound calls before you spend a dollar on ads.</div></div>
+      <div class="faq-answer"><div class="faq-answer-inner">We send a sequenced series of automated texts and emails to your past customers asking them to leave a Google review. The timing and messaging is calibrated to maximize response. Most clients see 30–100 new reviews in the first 60 days — which dramatically improves your Map Pack ranking and drives more inbound calls before you spend a dollar on ads. Reviews are social proof that wins the job before you even show up.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">What is the lead reactivation campaign?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">It's a targeted outreach to every lead in your database who never converted — old estimates, web inquiries, cold leads from previous storms. We send a sequence of texts and emails designed to re-engage them. Most roofers have thousands of dollars sitting in dead leads. Clients regularly book 3–5 jobs from their very first reactivation blast.</div></div>
+      <button class="faq-question" onclick="toggleFaq(this)">What is the dead lead reactivation campaign?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">It's a targeted outreach to every lead in your database who never converted — old estimates, web form submissions, past inquiries that went cold. We send a sequence of texts and emails designed to re-engage them. Most contractors have thousands of dollars sitting in dead leads. Our clients regularly book 3–5 jobs from their very first reactivation campaign.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">How quickly can you get me set up?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Most systems are fully live within 3–5 business days after your onboarding call. We handle all the technical setup — your website, automation workflows, dashboard, and integrations. You just need to show up to the onboarding call and we take it from there.</div></div>
+      <button class="faq-question" onclick="toggleFaq(this)">How quickly can you get me set up and live?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Most systems are fully live within 3–5 business days of your onboarding call. We handle all the technical setup — your website, automation workflows, dashboard, and integrations. You just need to show up to the onboarding call and we take it from there. You'll go from zero to a fully operational lead machine in less than a week.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">Do I need to change my current website or phone system?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">No. We can work alongside your existing setup or replace it entirely — your call. The automation integrates with your current phone number and we can layer our webchat and lead capture on top of any existing website. If you want a full new website, that's included in every package.</div></div>
+      <button class="faq-question" onclick="toggleFaq(this)">Do I need to replace my current website or phone system?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">No. We can layer our system on top of what you already have, or replace it entirely — your call. The automation integrates with your existing phone number. If you want a brand new website, that's included in every package. Most clients go the full replacement route because our sites are built specifically to convert contractor leads, not just look professional.</div></div>
     </div>
     <div class="faq-item">
-      <button class="faq-question" onclick="toggleFaq(this)">Are there contracts?<span class="faq-toggle">+</span></button>
-      <div class="faq-answer"><div class="faq-answer-inner">Month-to-month only. We don't lock you in because we'd rather earn your business with results every single month. The only ask is 30 days notice if you decide to cancel. In practice, clients stay because the system keeps producing — not because they're trapped.</div></div>
+      <button class="faq-question" onclick="toggleFaq(this)">Are there long-term contracts?<span class="faq-toggle">+</span></button>
+      <div class="faq-answer"><div class="faq-answer-inner">Month-to-month only. We don't believe in locking you in — we believe in earning your business with results every single month. The only ask is 30 days notice if you decide to cancel. In practice, our clients stay because the system keeps producing, not because they're trapped.</div></div>
     </div>
   </div>
 </section>
 
-<!-- 10. BOOK YOUR FREE STRATEGY CALL -->
+<!-- 10. CTA -->
 <section class="cta-section" id="cta">
   <div class="cta-inner">
     <div class="cta-left">
       <div class="section-label light" style="margin-bottom:20px;">Book Your Free Strategy Call</div>
-      <h2>The Next Storm is Coming.<br><span>Will You Be Ready?</span></h2>
-      <p class="cta-body">Book a free 20-minute strategy call. We'll review your current setup, show you exactly how many leads you're likely losing, and give you a clear plan — whether you work with us or not.</p>
+      <h2>The Next Lead is Coming.<br><span>Will You Be Ready?</span></h2>
+      <p class="cta-body">Book a free 20-minute strategy call. We'll review your current setup, show you exactly how many leads you're likely losing, and give you a clear action plan — whether you work with us or not. No pitch. No pressure. Just a real conversation.</p>
       <div class="cta-trust">
         <div class="cta-trust-item"><div class="cta-trust-icon">⚡</div> Auto-text fires within 5 minutes of every new lead</div>
         <div class="cta-trust-item"><div class="cta-trust-icon">📅</div> Free 20-minute call — no pressure, no obligation</div>
         <div class="cta-trust-item"><div class="cta-trust-icon">🤝</div> Month-to-month only — no long-term contracts</div>
-        <div class="cta-trust-item"><div class="cta-trust-icon">🏠</div> Built exclusively for roofing contractors</div>
+        <div class="cta-trust-item"><div class="cta-trust-icon">🚀</div> Live in 3–5 business days — we handle all the setup</div>
       </div>
     </div>
-    <div>
-      <div class="cta-form-wrap">
-        <div class="cta-form-header">
-          <h3>Get Your Free Strategy Call</h3>
-          <p>Fill out the form below and we'll be in touch within 1 business day</p>
-        </div>
-        <div class="cta-form-body">
-          <iframe
-            src="https://link.morelocalgrowth.com/widget/form/WSb9l9DGsCdkwiSAAvGN"
-            id="inline-WSb9l9DGsCdkwiSAAvGN"
-            data-layout="{'id':'INLINE'}"
-            data-trigger-type="alwaysShow"
-            data-trigger-value=""
-            data-activation-type="alwaysActivated"
-            data-activation-value=""
-            data-deactivation-type="neverDeactivate"
-            data-deactivation-value=""
-            data-form-name="Website form new"
-            data-height="434"
-            data-layout-iframe-id="inline-WSb9l9DGsCdkwiSAAvGN"
-            data-form-id="WSb9l9DGsCdkwiSAAvGN"
-            title="Website form new"
-            style="width:100%;height:100%;border:none;border-radius:8px"
-          ></iframe>
-        </div>
-        <div class="cta-form-footer">
-          <div class="cta-form-footer-item"><span>⚡</span> Response within 1 business day</div>
-          <div class="cta-form-footer-item"><span>🔒</span> Your info is never shared</div>
-          <div class="cta-form-footer-item"><span>🤝</span> No obligation</div>
-        </div>
+    <div class="cta-form-card">
+      <h3>Let's Talk About Your Business</h3>
+      <p>Free 20-minute strategy call. We'll show you exactly where leads are slipping through and how to stop it.</p>
+      <div style="display:flex;flex-direction:column;gap:16px;margin-top:8px;">
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-body);"><span style="color:var(--teal);font-size:16px;">✓</span> No pitch. No pressure. No obligation.</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-body);"><span style="color:var(--teal);font-size:16px;">✓</span> Takes less than 60 seconds to book.</div>
+        <div style="display:flex;align-items:center;gap:10px;font-size:14px;color:var(--text-body);"><span style="color:var(--teal);font-size:16px;">✓</span> We'll show you exactly where leads are slipping.</div>
       </div>
+      <button class="form-submit" onclick="openGHLForm()" style="margin-top:28px;">Book My Free Strategy Call →</button>
+      <p class="form-disclaimer">We respect your privacy. No spam, ever. Your info is safe with us.</p>
     </div>
   </div>
 </section>
-<script src="https://link.morelocalgrowth.com/js/form_embed.js"></script>
 
 <!-- FOOTER -->
 <footer>
-  <div class="footer-grid">
-    <div>
-      <div class="footer-logo">
-        <img src="data:image/jpeg;base64,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7brV00jodUWqOMuJY02dzi0Z5Anjc+Xet1ZobjBQNjutbBWVQJ3pYafgtIzyG7vOxy81OkRLMUKue1TQduudRQVV9bv0snCqZY6aWSCB/wBWSVrSxh8cnl34UwrI5JqSaKGUxSPjc1jx1aSMA+5UXp3VTtEbJZdFustwptZUFPLBBSOtcs8VfUEndla9jSx7XkgkkjvyprG1L2mq29Wav0/pajpKu9VzoYayUQ05igkmMjy0uADY2uJ5AnomktYac1WKn5CuTamSlIFRE6J8UsWem8x4DhnuOOag+15moKn+bya300Ruzb1FI4TRvMMb/R5MmTcyWtySPgvrZnTXqbapqe5aubDT32Kkp6SGKjp3tpJKQEvbKyR2S9xcSCDgtxjHNT0xraOuerSRX3afoeyXWottfesVFIQKsw00szKYnulexpaw/wC4jHet1dtT2K12amvNZcYm26qliihqYwZI3GUhsZy0HkSR63Tn1VXaA1Jb9numqzSeqbPdm3iGsqZCILbLUC7cSVzmyRvY0tcXAgEOIxjBWy0roW41XZ8n0hdoHUdXWwVMkFMXAmjL5HSwx58WEs9hGEmsQRe0rArdS2Si1NQabqa9kd1uEUktLTlrsyNZ9I5xge888HHReVTqyw07r019Y97rGGG4CKnkkMW+3eaAGtO8d3Bw3JGRlUZRQ6h1Hpur2r11rrI73ZKih9DpXxOEroqQfhYaMZxKZJvbutVq7E6Cqj0dJe7lA+G46grJrrUskbhzOK75th7/AFYwwYSaxBW82l62Tanoq83eO02641k1ZJKIeGbXVNDXkZAeXRgM5fWIUkt97tlfeLnaKSp4lba3RNrI9xw4Zkbvs5kYOW8+WVDNmEE8Wv8AaNJLDLGyW8Qujc9hAePRYxlpPUZ8FpLfp6/3Pa/r2ot2pbrp+ES0HOnpIntqPwYc8ysdndxj1fHmmoItbULN09fbXqCjmq7TVekww1MtM9245uJI3Fr2+sB0IIz0WyVb9nekq6LRNfT1vpDpm3y4b0k8e46X593r4wB63Xly58lZCrMales7iJkRRd1s1wXEt1VaQMnA+RnHA7v75b60xV0NvijuVVDV1TQeJNFDwmu58sN3nY5Y7ymkxLKREUJEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERATCIgIiIGEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z" alt="More Local Growth" />
-      </div>
-      <p class="footer-brand-desc">Roofing lead systems that fill your calendar.</p>
-    </div>
-    <div class="footer-col">
-      <h4>What We Do</h4>
-      <ul>
-        <li><a href="#">2-Way SMS Automation</a></li>
-        <li><a href="#">Google Review Campaign</a></li>
-        <li><a href="#">Lead Reactivation</a></li>
-        <li><a href="#">Roofing Website</a></li>
-        <li><a href="#">Pipeline Dashboard</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Company</h4>
-      <ul>
-        <li><a href="#how">How It Works</a></li>
-        <li><a href="#pricing">Pricing</a></li>
-        <li><a href="#faq">FAQ</a></li>
-        <li><a href="#cta">Free Strategy Call</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li><a href="tel:3126197568">(312) 619-7568</a></li>
-        <li><a href="mailto:hello@morelocalgrowth.com">hello@morelocalgrowth.com</a></li>
-        <li><a href="https://morelocalgrowth.com">morelocalgrowth.com</a></li>
-        <li style="color:var(--text-muted); font-size:14px;">11 Campus Circle<br>Lake Forest, IL 60045</li>
-      </ul>
-    </div>
+  <a href="#"><img src="data:image/png;base64,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7brV00jodUWqOMuJY02dzi0Z5Anjc+Xet1ZobjBQNjutbBWVQJ3pYafgtIzyG7vOxy81OkRLMUKue1TQduudRQVV9bv0snCqZY6aWSCB/wBWSVrSxh8cnl34UwrI5JqSaKGUxSPjc1jx1aSMA+5UXp3VTtEbJZdFustwptZUFPLBBSOtcs8VfUEndla9jSx7XkgkkjvyprG1L2mq29Wav0/pajpKu9VzoYayUQ05igkmMjy0uADY2uJ5AnomktYac1WKn5CuTamSlIFRE6J8UsWem8x4DhnuOOag+15moKn+bya300Ruzb1FI4TRvMMb/R5MmTcyWtySPgvrZnTXqbapqe5aubDT32Kkp6SGKjp3tpJKQEvbKyR2S9xcSCDgtxjHNT0xraOuerSRX3afoeyXWottfesVFIQKsw00szKYnulexpaw/wC4jHet1dtT2K12amvNZcYm26qliihqYwZI3GUhsZy0HkSR63Tn1VXaA1Jb9numqzSeqbPdm3iGsqZCILbLUC7cSVzmyRvY0tcXAgEOIxjBWy0roW41XZ8n0hdoHUdXWwVMkFMXAmjL5HSwx58WEs9hGEmsQRe0rArdS2Si1NQabqa9kd1uEUktLTlrsyNZ9I5xge888HHReVTqyw07r019Y97rGGG4CKnkkMW+3eaAGtO8d3Bw3JGRlUZRQ6h1Hpur2r11rrI73ZKih9DpXxOEroqQfhYaMZxKZJvbutVq7E6Cqj0dJe7lA+G46grJrrUskbhzOK75th7/AFYwwYSaxBW82l62Tanoq83eO02641k1ZJKIeGbXVNDXkZAeXRgM5fWIUkt97tlfeLnaKSp4lba3RNrI9xw4Zkbvs5kYOW8+WVDNmEE8Wv8AaNJLDLGyW8Qujc9hAePRYxlpPUZ8FpLfp6/3Pa/r2ot2pbrp+ES0HOnpIntqPwYc8ysdndxj1fHmmoItbULN09fbXqCjmq7TVekww1MtM9245uJI3Fr2+sB0IIz0WyVb9nekq6LRNfT1vpDpm3y4b0k8e46X593r4wB63Xly58lZCrMales7iJkRRd1s1wXEt1VaQMnA+RnHA7v75b60xV0NvijuVVDV1TQeJNFDwmu58sN3nY5Y7ymkxLKREUJEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERATCIgIiIGEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERAREQEREBERB//Z" alt="More Local Growth" style="height:60px;width:auto;display:block;" /></a>
+  <div class="footer-links">
+    <a href="#problem">The Problem</a>
+    <a href="#how">How It Works</a>
+    <a href="#features">What You Get</a>
+    <a href="#pricing">Pricing</a>
+    <a href="#faq">FAQ</a>
+    <a href="mailto:hello@morelocalgrowth.com">hello@morelocalgrowth.com</a>
   </div>
-  <div class="footer-bottom">
-    <span class="footer-copyright">© 2026 Daniel Andrews DBA More Local Growth. All rights reserved.</span>
-    <div class="footer-legal">
-      <a href="#" onclick="openPrivacy(event)">Privacy Policy</a>
-      <span style="color:var(--card-border);">|</span>
-      <a href="#" onclick="openTerms(event)">Terms &amp; Conditions</a>
-      <span style="color:var(--card-border);">|</span>
-      <span class="footer-serving">Serving roofing contractors across the US</span>
-    </div>
-  </div>
+  <div class="footer-copy">© 2026 More Local Growth. All rights reserved.</div>
 </footer>
-
-<script>
-  function toggleFaq(btn) {
-    const item = btn.closest('.faq-item');
-    const answer = item.querySelector('.faq-answer');
-    const allItems = document.querySelectorAll('.faq-item');
-    allItems.forEach(i => {
-      if (i !== item) {
-        i.querySelector('.faq-question').classList.remove('open');
-        i.querySelector('.faq-answer').classList.remove('open');
-      }
-    });
-    btn.classList.toggle('open');
-    answer.classList.toggle('open');
-  }
-</script>
-
-<!-- PRIVACY POLICY PAGE -->
-<div class="legal-page" id="privacyPage">
-  <div class="privacy-nav">
-    <a href="#" class="privacy-back" onclick="closePrivacy(event)">← Back to More Local Growth</a>
-    <span style="font-size:13px; color:var(--text-muted);">morelocalgrowth.com</span>
-  </div>
-  <div class="privacy-content">
-    <h1>Privacy Policy</h1>
-    <p class="privacy-date">Last updated: October 04, 2024</p>
-    <p>This Privacy Policy describes Our policies and procedures on the collection, use and disclosure of Your information when You use the Service and tells You about Your privacy rights and how the law protects You. We use Your Personal data to provide and improve the Service. By using the Service, You agree to the collection and use of information in accordance with this Privacy Policy.</p>
-
-    <h2>Interpretation and Definitions</h2>
-    <h3>Interpretation</h3>
-    <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
-    <h3>Definitions</h3>
-    <p>For the purposes of this Privacy Policy:</p>
-    <ul>
-      <li><strong>Account</strong> means a unique account created for You to access our Service or parts of our Service.</li>
-      <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
-      <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to More Local Growth.</li>
-      <li><strong>Cookies</strong> are small files that are placed on Your computer, mobile device or any other device by a website, containing the details of Your browsing history on that website among its many uses.</li>
-      <li><strong>Country</strong> refers to: Illinois, United States.</li>
-      <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
-      <li><strong>Personal Data</strong> is any information that relates to an identified or identifiable individual.</li>
-      <li><strong>Service</strong> refers to the Website.</li>
-      <li><strong>Service Provider</strong> means any natural or legal person who processes the data on behalf of the Company.</li>
-      <li><strong>Usage Data</strong> refers to data collected automatically, either generated by the use of the Service or from the Service infrastructure itself.</li>
-      <li><strong>Website</strong> refers to More Local Growth, accessible from <a href="https://morelocalgrowth.com" style="color:var(--teal);">morelocalgrowth.com</a>.</li>
-      <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
-    </ul>
-
-    <h2>Collecting and Using Your Personal Data</h2>
-    <h3>Personal Data</h3>
-    <p>While using Our Service, We may ask You to provide Us with certain personally identifiable information that can be used to contact or identify You. Personally identifiable information may include, but is not limited to:</p>
-    <ul>
-      <li>Email address</li>
-      <li>First name and last name</li>
-      <li>Phone number</li>
-      <li>Address, State, Province, ZIP/Postal code, City</li>
-      <li>Usage Data</li>
-    </ul>
-    <h3>Usage Data</h3>
-    <p>Usage Data is collected automatically when using the Service. Usage Data may include information such as Your Device's Internet Protocol address (e.g. IP address), browser type, browser version, the pages of our Service that You visit, the time and date of Your visit, the time spent on those pages, unique device identifiers and other diagnostic data.</p>
-    <h3>Tracking Technologies and Cookies</h3>
-    <p>We use Cookies and similar tracking technologies to track the activity on Our Service and store certain information. The technologies We use may include Cookies or Browser Cookies and Web Beacons. We use both Session and Persistent Cookies including Necessary/Essential Cookies, Cookies Policy/Notice Acceptance Cookies, and Functionality Cookies.</p>
-
-    <h2>Use of Your Personal Data</h2>
-    <p>The Company may use Personal Data to provide and maintain our Service, manage Your Account, perform contracts, contact You, provide offers and information, manage Your requests, for business transfers, and for data analysis and service improvement.</p>
-
-    <h2>Retention of Your Personal Data</h2>
-    <p>The Company will retain Your Personal Data only for as long as is necessary for the purposes set out in this Privacy Policy, to comply with our legal obligations, resolve disputes, and enforce our legal agreements and policies.</p>
-
-    <h2>Transfer of Your Personal Data</h2>
-    <p>Your information may be transferred to and maintained on computers located outside of Your state, province, country or other governmental jurisdiction. Your consent to this Privacy Policy followed by Your submission of such information represents Your agreement to that transfer.</p>
-
-    <h2>Delete Your Personal Data</h2>
-    <p>You have the right to delete or request that We assist in deleting the Personal Data that We have collected about You. Please contact Us to request access to, correct, or delete any personal information that You have provided to Us.</p>
-
-    <h2>Disclosure of Your Personal Data</h2>
-    <h3>Business Transactions</h3>
-    <p>If the Company is involved in a merger, acquisition or asset sale, Your Personal Data may be transferred with prior notice to You.</p>
-    <h3>Law Enforcement</h3>
-    <p>Under certain circumstances, the Company may be required to disclose Your Personal Data if required to do so by law or in response to valid requests by public authorities.</p>
-
-    <h2>Security of Your Personal Data</h2>
-    <p>The security of Your Personal Data is important to Us, but no method of transmission over the Internet or method of electronic storage is 100% secure. While We strive to use commercially acceptable means to protect Your Personal Data, We cannot guarantee its absolute security.</p>
-
-    <h2>Children's Privacy</h2>
-    <p>Our Service does not address anyone under the age of 13. We do not knowingly collect personally identifiable information from anyone under the age of 13. If You are a parent or guardian and You are aware that Your child has provided Us with Personal Data, please contact Us.</p>
-
-    <h2>Links to Other Websites</h2>
-    <p>Our Service may contain links to other websites not operated by Us. We strongly advise You to review the Privacy Policy of every site You visit. We have no control over and assume no responsibility for the content, privacy policies or practices of any third party sites or services.</p>
-
-    <h2>Changes to this Privacy Policy</h2>
-    <p>We may update Our Privacy Policy from time to time and will notify You of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date.</p>
-
-    <h2>Contact Us</h2>
-    <p>If you have any questions about this Privacy Policy, You can contact us:</p>
-    <ul>
-      <li>By email: <a href="mailto:hello@morelocalgrowth.com" style="color:var(--teal);">hello@morelocalgrowth.com</a></li>
-      <li>By visiting: <a href="https://morelocalgrowth.com" style="color:var(--teal);">morelocalgrowth.com</a></li>
-      <li>By phone: <a href="tel:3126197568" style="color:var(--teal);">(312) 619-7568</a></li>
-      <li>By mail: 11 Campus Circle, Lake Forest, IL 60045</li>
-    </ul>
-  </div>
-</div>
-
-<!-- TERMS AND CONDITIONS PAGE -->
-<div class="legal-page" id="termsPage">
-  <div class="privacy-nav">
-    <a href="#" class="privacy-back" onclick="closeTerms(event)">← Back to More Local Growth</a>
-    <span style="font-size:13px; color:var(--text-muted);">morelocalgrowth.com</span>
-  </div>
-  <div class="privacy-content">
-    <h1>Terms and Conditions</h1>
-    <p class="privacy-date">Last updated: October 04, 2024</p>
-    <p>Please read these terms and conditions carefully before using Our Service.</p>
-
-    <h2>Interpretation and Definitions</h2>
-    <h3>Interpretation</h3>
-    <p>The words of which the initial letter is capitalized have meanings defined under the following conditions. The following definitions shall have the same meaning regardless of whether they appear in singular or in plural.</p>
-    <h3>Definitions</h3>
-    <p>For the purposes of these Terms and Conditions:</p>
-    <ul>
-      <li><strong>Affiliate</strong> means an entity that controls, is controlled by or is under common control with a party, where "control" means ownership of 50% or more of the shares, equity interest or other securities entitled to vote for election of directors or other managing authority.</li>
-      <li><strong>Country</strong> refers to: Illinois, United States.</li>
-      <li><strong>Company</strong> (referred to as either "the Company", "We", "Us" or "Our" in this Agreement) refers to More Local Growth.</li>
-      <li><strong>Device</strong> means any device that can access the Service such as a computer, a cellphone or a digital tablet.</li>
-      <li><strong>Service</strong> refers to the Website.</li>
-      <li><strong>Terms and Conditions</strong> (also referred to as "Terms") mean these Terms and Conditions that form the entire agreement between You and the Company regarding the use of the Service.</li>
-      <li><strong>Third-party Social Media Service</strong> means any services or content provided by a third-party that may be displayed, included or made available by the Service.</li>
-      <li><strong>Website</strong> refers to More Local Growth, accessible from <a href="https://morelocalgrowth.com" style="color:var(--teal);">morelocalgrowth.com</a>.</li>
-      <li><strong>You</strong> means the individual accessing or using the Service, or the company, or other legal entity on behalf of which such individual is accessing or using the Service, as applicable.</li>
-    </ul>
-
-    <h2>Acknowledgment</h2>
-    <p>These are the Terms and Conditions governing the use of this Service and the agreement that operates between You and the Company. These Terms and Conditions set out the rights and obligations of all users regarding the use of the Service.</p>
-    <p>Your access to and use of the Service is conditioned on Your acceptance of and compliance with these Terms and Conditions. These Terms and Conditions apply to all visitors, users and others who access or use the Service.</p>
-    <p>By accessing or using the Service You agree to be bound by these Terms and Conditions. If You disagree with any part of these Terms and Conditions then You may not access the Service.</p>
-    <p>You represent that you are over the age of 18. The Company does not permit those under 18 to use the Service.</p>
-    <p>Your access to and use of the Service is also conditioned on Your acceptance of and compliance with the Privacy Policy of the Company. Please read Our Privacy Policy carefully before using Our Service.</p>
-
-    <h2>Links to Other Websites</h2>
-    <p>Our Service may contain links to third-party web sites or services that are not owned or controlled by the Company. The Company has no control over, and assumes no responsibility for, the content, privacy policies, or practices of any third party web sites or services.</p>
-    <p>We strongly advise You to read the terms and conditions and privacy policies of any third-party web sites or services that You visit.</p>
-
-    <h2>Termination</h2>
-    <p>We may terminate or suspend Your access immediately, without prior notice or liability, for any reason whatsoever, including without limitation if You breach these Terms and Conditions. Upon termination, Your right to use the Service will cease immediately.</p>
-
-    <h2>Limitation of Liability</h2>
-    <p>Notwithstanding any damages that You might incur, the entire liability of the Company and any of its suppliers under any provision of this Terms and Your exclusive remedy for all of the foregoing shall be limited to the amount actually paid by You through the Service or 100 USD if You haven't purchased anything through the Service.</p>
-    <p>To the maximum extent permitted by applicable law, in no event shall the Company or its suppliers be liable for any special, incidental, indirect, or consequential damages whatsoever, even if the Company or any supplier has been advised of the possibility of such damages.</p>
-
-    <h2>"AS IS" and "AS AVAILABLE" Disclaimer</h2>
-    <p>The Service is provided to You "AS IS" and "AS AVAILABLE" and with all faults and defects without warranty of any kind. To the maximum extent permitted under applicable law, the Company expressly disclaims all warranties, whether express, implied, statutory or otherwise, with respect to the Service.</p>
-    <p>Without limiting the foregoing, neither the Company nor any of the company's providers makes any representation or warranty of any kind, express or implied: (i) as to the operation or availability of the Service; (ii) that the Service will be uninterrupted or error-free; (iii) as to the accuracy, reliability, or currency of any information or content provided through the Service; or (iv) that the Service is free of viruses or other harmful components.</p>
-
-    <h2>Governing Law</h2>
-    <p>The laws of Illinois, United States, excluding its conflicts of law rules, shall govern these Terms and Your use of the Service.</p>
-
-    <h2>Disputes Resolution</h2>
-    <p>If You have any concern or dispute about the Service, You agree to first try to resolve the dispute informally by contacting the Company.</p>
-
-    <h2>United States Legal Compliance</h2>
-    <p>You represent and warrant that (i) You are not located in a country that is subject to the United States government embargo, or that has been designated as a "terrorist supporting" country, and (ii) You are not listed on any United States government list of prohibited or restricted parties.</p>
-
-    <h2>Severability and Waiver</h2>
-    <h3>Severability</h3>
-    <p>If any provision of these Terms is held to be unenforceable or invalid, such provision will be changed and interpreted to accomplish the objectives of such provision to the greatest extent possible under applicable law and the remaining provisions will continue in full force and effect.</p>
-    <h3>Waiver</h3>
-    <p>Except as provided herein, the failure to exercise a right or to require performance of an obligation under these Terms shall not affect a party's ability to exercise such right or require such performance at any time thereafter.</p>
-
-    <h2>Changes to These Terms and Conditions</h2>
-    <p>We reserve the right, at Our sole discretion, to modify or replace these Terms at any time. If a revision is material We will make reasonable efforts to provide at least 30 days' notice prior to any new terms taking effect. By continuing to access or use Our Service after those revisions become effective, You agree to be bound by the revised terms.</p>
-
-    <h2>Contact Us</h2>
-    <p>If you have any questions about these Terms and Conditions, You can contact us:</p>
-    <ul>
-      <li>By email: <a href="mailto:hello@morelocalgrowth.com" style="color:var(--teal);">hello@morelocalgrowth.com</a></li>
-      <li>By visiting: <a href="https://morelocalgrowth.com" style="color:var(--teal);">morelocalgrowth.com</a></li>
-      <li>By phone: <a href="tel:3126197568" style="color:var(--teal);">(312) 619-7568</a></li>
-      <li>By mail: 11 Campus Circle, Lake Forest, IL 60045</li>
-    </ul>
-  </div>
-</div>
-
-<!-- GHL Form Embed -->
-<script src="https://link.morelocalgrowth.com/js/form_embed.js"></script>
-
-<!-- GHL Chat Widget -->
-<script src="https://widgets.leadconnectorhq.com/loader.js" data-resources-url="https://widgets.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a2388619372a70f7dc9ea78" data-source="WEB_USER"></script>
 
 <script>
   function toggleMenu() {
@@ -1084,24 +826,46 @@
     document.getElementById('navLinks').classList.remove('open');
     document.getElementById('hamburger').classList.remove('open');
   }
-  function openPrivacy(e) {
-    e.preventDefault();
-    document.getElementById('privacyPage').classList.add('active');
-    window.scrollTo(0, 0);
+  function openGHLForm() {
+    var overlay = document.getElementById('ghlOverlay');
+    var container = document.getElementById('ghlIframeContainer');
+    // Destroy and recreate the iframe fresh every time so GHL reinitialises
+    container.innerHTML = '';
+    var iframe = document.createElement('iframe');
+    iframe.src = 'https://link.morelocalgrowth.com/widget/form/WSb9l9DGsCdkwiSAAvGN';
+    iframe.style.cssText = 'width:100%;height:600px;border:none;border-radius:16px;display:block;';
+    iframe.id = 'popup-WSb9l9DGsCdkwiSAAvGN';
+    iframe.title = 'Website form new';
+    iframe.setAttribute('data-layout', "{'id':'POPUP'}");
+    iframe.setAttribute('data-trigger-type', 'alwaysShow');
+    iframe.setAttribute('data-trigger-value', '');
+    iframe.setAttribute('data-activation-type', 'alwaysActivated');
+    iframe.setAttribute('data-activation-value', '');
+    iframe.setAttribute('data-deactivation-type', 'neverDeactivate');
+    iframe.setAttribute('data-deactivation-value', '');
+    iframe.setAttribute('data-form-name', 'Website form new');
+    iframe.setAttribute('data-height', 'undefined');
+    iframe.setAttribute('data-layout-iframe-id', 'popup-WSb9l9DGsCdkwiSAAvGN');
+    iframe.setAttribute('data-form-id', 'WSb9l9DGsCdkwiSAAvGN');
+    iframe.setAttribute('data-modal-height', '400');
+    container.appendChild(iframe);
+    overlay.style.display = 'flex';
+    document.body.style.overflow = 'hidden';
   }
-  function closePrivacy(e) {
-    e.preventDefault();
-    document.getElementById('privacyPage').classList.remove('active');
+  function closeGHLForm() {
+    var overlay = document.getElementById('ghlOverlay');
+    var container = document.getElementById('ghlIframeContainer');
+    overlay.style.display = 'none';
+    document.body.style.overflow = '';
+    // Clear iframe so it doesn't keep running in background
+    container.innerHTML = '';
   }
-  function openTerms(e) {
-    e.preventDefault();
-    document.getElementById('termsPage').classList.add('active');
-    window.scrollTo(0, 0);
-  }
-  function closeTerms(e) {
-    e.preventDefault();
-    document.getElementById('termsPage').classList.remove('active');
-  }
+  // Close on overlay background click
+  document.addEventListener('DOMContentLoaded', function() {
+    document.getElementById('ghlOverlay').addEventListener('click', function(e) {
+      if (e.target === this) closeGHLForm();
+    });
+  });
   function toggleFaq(btn) {
     const item = btn.closest('.faq-item');
     const answer = item.querySelector('.faq-answer');
@@ -1117,5 +881,15 @@
   }
 </script>
 
+
+<!-- GHL POPUP FORM MODAL -->
+<div id="ghlOverlay" style="display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,0.65);backdrop-filter:blur(4px);align-items:center;justify-content:center;">
+  <div style="background:white;border-radius:16px;width:92%;max-width:560px;max-height:90vh;overflow:auto;position:relative;box-shadow:0 32px 80px rgba(0,0,0,0.4);">
+    <button onclick="closeGHLForm()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:24px;cursor:pointer;color:#6b8a9a;z-index:10;line-height:1;">✕</button>
+    <div id="ghlIframeContainer"></div>
+  </div>
+</div>
+<script src="https://link.morelocalgrowth.com/js/form_embed.js"></script>
+<script src="https://beta.leadconnectorhq.com/loader.js" data-resources-url="https://beta.leadconnectorhq.com/chat-widget/loader.js" data-widget-id="6a2388619372a70f7dc9ea78"></script>
 </body>
 </html>
